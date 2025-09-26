@@ -1,16 +1,125 @@
-.gallery {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/* Animation d'apparition des cartes projets */
+.gallery .card {
+	opacity: 0;
+	transform: translateY(30px) scale(0.98);
+	animation: cardFadeIn 0.7s cubic-bezier(.5,1.5,.5,1) forwards;
+}
+.gallery .card:nth-child(1) { animation-delay: 0s; }
+.gallery .card:nth-child(2) { animation-delay: 0.15s; }
+.gallery .card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes cardFadeIn {
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
 }
 
-.card {
-	flex-basis: 300px;
-	flex-grow: 1;
-	background-color: white;
-	padding: 1rem;
-	border-radius: 8px;
+/* Animation au survol des textes */
+a, h3, p {
+	transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
 }
+a:hover, h3:hover, p:hover {
+	color: #1976d2;
+	text-shadow: 0 2px 16px rgba(25, 118, 210, 0.18);
+	transform: scale(1.04);
+}
+/* Animation d'apparition des cartes */
+.card {
+
+/* Animation sur le header et le titre */
+header {
+	animation: headerSlide 1s cubic-bezier(.5,1.5,.5,1);
+}
+@keyframes headerSlide {
+	from { opacity: 0; transform: translateY(-40px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+header h1 {
+	background: none;
+	color: #1976d2;
+	animation: titlePop 1.2s cubic-bezier(.5,1.5,.5,1);
+	font-size: 3rem;
+	font-weight: 800;
+	letter-spacing: 2px;
+	text-shadow: 0 6px 32px rgba(25, 118, 210, 0.13), 0 1px 0 #fff;
+	margin-bottom: 0.5rem;
+	opacity: 0;
+	transform: translateY(30px) scale(0.98);
+	animation: cardFadeIn 0.7s cubic-bezier(.5,1.5,.5,1) forwards;
+}
+.card:nth-child(2) { animation-delay: 0.15s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes cardFadeIn {
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+}
+@keyframes titlePop {
+	0% { opacity: 0; transform: scale(0.8); }
+	60% { opacity: 1; transform: scale(1.08); }
+	100% { opacity: 1; transform: scale(1); }
+}
+
+/* Animation sur le menu au survol */
+nav ul li a {
+	position: relative;
+	overflow: hidden;
+}
+nav ul li a::after {
+	content: "";
+	position: absolute;
+	left: 0; bottom: 0;
+	width: 100%; height: 2px;
+	background: linear-gradient(90deg, #1976d2, #eaf6ff);
+	transform: scaleX(0);
+	transition: transform 0.3s;
+}
+nav ul li a:hover::after {
+	transform: scaleX(1);
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/* Arrière-plan décoratif futuriste */
+.bg-deco {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+.deco-svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	pointer-events: none;
+}
+
+body {
+	font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+	background-color: #eaf6ff; /* bleu encore plus doux */
+	color: #222a36; /* gris-bleu foncé moderne */
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 2rem;
+	background-color: #fff;
+	box-shadow: 0 4px 24px rgba(25, 118, 210, 0.07);
+	border-bottom: none;
+}
+
 nav ul {
 	display: flex;
 	gap: 2rem;
@@ -18,15 +127,51 @@ nav ul {
 	margin: 0;
 	padding: 0;
 }
-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem 2rem;
-	background-color: white;
+
+nav ul li a {
+	color: #222a36;
+	text-decoration: none;
+	font-weight: 500;
+	padding: 0.5rem 1rem;
+	border-radius: 6px;
+	transition: background 0.2s, color 0.2s;
 }
-body {
-	font-family: 'Segoe UI', Arial, sans-serif;
-	background-color: #f5f5fa;
-	color: #22223b;
+nav ul li a:hover {
+	background: #d6eaff;
+	color: #1976d2;
+}
+
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	background: #eaf6ff;
+	padding: 1.5rem 0;
+	border-radius: 32px;
+	box-shadow: 0 12px 48px rgba(25, 118, 210, 0.10);
+}
+
+.card {
+	flex-basis: 300px;
+	flex-grow: 1;
+	background-color: #fff;
+	box-shadow: 0 2px 16px rgba(25, 118, 210, 0.08);
+	border: none;
+	box-shadow: 0 4px 32px rgba(25, 118, 210, 0.10), 0 1.5px 0 #eaf6ff;
+	padding: 1.25rem;
+	border-radius: 16px;
+	transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+	transform: translateY(-8px) scale(1.04);
+	box-shadow: 0 12px 32px rgba(25, 118, 210, 0.13);
+}
+
+footer {
+	background: #fff;
+	color: #222a36;
+	border-top: none;
+	box-shadow: 0 -2px 24px rgba(25, 118, 210, 0.07);
+	text-align: center;
+	padding: 1rem 0;
 }
